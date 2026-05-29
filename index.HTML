@@ -1,10 +1,416 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My New Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Hub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background: linear-gradient(135deg,#0f172a,#1e293b,#111827);
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* Navbar */
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#38bdf8;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#38bdf8;
+    }
+
+    .btn{
+      background:#38bdf8;
+      color:#000;
+      padding:10px 18px;
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+      background:white;
+    }
+
+    /* Hero Section */
+
+    .hero{
+      min-height:90vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:40px;
+      position:relative;
+    }
+
+    .hero-content h1{
+      font-size:65px;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
+    .hero-content span{
+      color:#38bdf8;
+    }
+
+    .hero-content p{
+      max-width:700px;
+      margin:auto;
+      color:#cbd5e1;
+      margin-bottom:30px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .hero-buttons button{
+      padding:14px 28px;
+      border:none;
+      border-radius:50px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:600;
+    }
+
+    .start-btn{
+      background:#38bdf8;
+      color:black;
+    }
+
+    .explore-btn{
+      background:transparent;
+      border:2px solid #38bdf8 !important;
+      color:white;
+    }
+
+    .hero-buttons button:hover{
+      transform:translateY(-5px);
+    }
+
+    /* Floating Icons */
+
+    .floating-icons i{
+      position:absolute;
+      font-size:40px;
+      opacity:0.15;
+      animation:float 6s infinite ease-in-out;
+    }
+
+    .floating-icons i:nth-child(1){
+      top:15%;
+      left:10%;
+      color:#38bdf8;
+    }
+
+    .floating-icons i:nth-child(2){
+      top:70%;
+      left:15%;
+      color:#f472b6;
+      animation-delay:2s;
+    }
+
+    .floating-icons i:nth-child(3){
+      top:20%;
+      right:12%;
+      color:#4ade80;
+      animation-delay:1s;
+    }
+
+    .floating-icons i:nth-child(4){
+      bottom:10%;
+      right:15%;
+      color:#facc15;
+      animation-delay:3s;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-20px);
+      }
+    }
+
+    /* Courses */
+
+    .courses{
+      padding:80px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:42px;
+      color:#38bdf8;
+    }
+
+    .course-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .course-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:25px;
+      padding:30px;
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .course-card:hover{
+      transform:translateY(-12px);
+      box-shadow:0 0 25px rgba(56,189,248,0.4);
+    }
+
+    .course-icon{
+      width:75px;
+      height:75px;
+      border-radius:20px;
+      background:#38bdf8;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:32px;
+      color:black;
+      margin-bottom:20px;
+    }
+
+    .course-card h3{
+      margin-bottom:10px;
+      font-size:24px;
+    }
+
+    .course-card p{
+      color:#cbd5e1;
+      margin-bottom:20px;
+    }
+
+    .course-card button{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:30px;
+      background:#38bdf8;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .course-card button:hover{
+      background:white;
+    }
+
+    /* Footer */
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#94a3b8;
+      border-top:1px solid rgba(255,255,255,0.1);
+      margin-top:50px;
+    }
+
+    /* Responsive */
+
+    @media(max-width:768px){
+
+      .hero-content h1{
+        font-size:42px;
+      }
+
+      nav ul{
+        display:none;
+      }
+    }
+
+  </style>
 </head>
+
 <body>
-    <h1>Welcome to My New Webpage</h1>
-    <p>This page is hosted using GitHub and Vercel.</p>
+
+  <!-- Navbar -->
+
+  <nav>
+    <div class="logo">
+      <i class="fa-solid fa-graduation-cap"></i> EduVerse
+    </div>
+
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <button class="btn">Login</button>
+  </nav>
+
+  <!-- Hero Section -->
+
+  <section class="hero">
+
+    <div class="floating-icons">
+      <i class="fa-solid fa-code"></i>
+      <i class="fa-solid fa-palette"></i>
+      <i class="fa-solid fa-chart-line"></i>
+      <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div class="hero-content">
+      <h1>Upgrade Your <span>Skills</span><br>With Smart Courses</h1>
+
+      <p>
+        Learn Web Development, AI, UI/UX, Marketing, Data Science
+        and more with interactive modern courses.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="start-btn">
+          <i class="fa-solid fa-play"></i> Start Learning
+        </button>
+
+        <button class="explore-btn">
+          <i class="fa-solid fa-compass"></i> Explore Courses
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Courses Section -->
+
+  <section class="courses">
+
+    <div class="section-title">
+      <h2>Popular Courses</h2>
+    </div>
+
+    <div class="course-container">
+
+      <div class="course-card">
+        <div class="course-icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+
+        <h3>Web Development</h3>
+
+        <p>
+          Learn HTML, CSS, JavaScript and build modern websites.
+        </p>
+
+        <button>Enroll Now</button>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+
+        <h3>Artificial Intelligence</h3>
+
+        <p>
+          Explore Machine Learning and AI technologies.
+        </p>
+
+        <button>Enroll Now</button>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon">
+          <i class="fa-solid fa-palette"></i>
+        </div>
+
+        <h3>UI/UX Design</h3>
+
+        <p>
+          Create stunning interfaces and user experiences.
+        </p>
+
+        <button>Enroll Now</button>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+
+        <h3>Digital Marketing</h3>
+
+        <p>
+          Master SEO, social media and online branding.
+        </p>
+
+        <button>Enroll Now</button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+
+  <footer>
+    © 2026 EduVerse | Designed with Modern UI ✨
+  </footer>
+
 </body>
 </html>
